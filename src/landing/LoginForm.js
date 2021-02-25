@@ -6,6 +6,9 @@ import {
 import {
   Visibility, VisibilityOff,
 } from '@material-ui/icons';
+import {
+  validateUsername, validatePassword,
+} from './Validations';
 import './styles.css';
 
 const LoginForm = () => {
@@ -20,22 +23,8 @@ const LoginForm = () => {
     } else setPasswordFieldType('password');
   };
 
-  const validUsername = () => {
-    if (username.length === 0) {
-      return false;
-    }
-    return true;
-  };
-
-  const validPassword = () => {
-    if (password.length < 6) {
-      return false;
-    }
-    return true;
-  };
-
   const buttonDisabledValue = () => {
-    if (validUsername() === false || validPassword() === false) {
+    if (!validateUsername(username) || !validatePassword(password)) {
       return true;
     }
     return false;
@@ -55,7 +44,7 @@ const LoginForm = () => {
         <InputLabel htmlFor="username-field">Username</InputLabel>
         <Input
           id="username-field"
-          error={!validUsername()}
+          error={!validateUsername(username)}
           aria-describedby="username-validation-info"
           onChange={(event) => setUsername(event.target.value)}
         />
@@ -66,7 +55,7 @@ const LoginForm = () => {
         <InputLabel htmlFor="password-field">Password</InputLabel>
         <Input
           id="password-field"
-          error={!validPassword()}
+          error={!validatePassword(password)}
           type={passwordFieldType}
           aria-describedby="password-validation-info"
           onChange={(event) => setPassword(event.target.value)}
@@ -80,13 +69,22 @@ const LoginForm = () => {
                 {passwordFieldType === 'text' ? <Visibility /> : <VisibilityOff />}
               </IconButton>
             </InputAdornment>
-                  )}
+                    )}
         />
-        <FormHelperText id="password-validation-info">*Password must be at least 6 characters long</FormHelperText>
+        <FormHelperText id="password-validation-info">
+          *Password must be at least 6 characters long
+        </FormHelperText>
       </FormControl>
       <br />
       <FormControl>
-        <Button variant="contained" color="primary" disabled={buttonDisabledValue()} onClick={() => handleLoginButton()}>Log in</Button>
+        <Button
+          variant="contained"
+          color="primary"
+          disabled={buttonDisabledValue()}
+          onClick={() => handleLoginButton()}
+        >
+          Log in
+        </Button>
       </FormControl>
     </form>
   );
