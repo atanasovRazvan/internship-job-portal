@@ -14,7 +14,7 @@ const LandingPage = () => {
       <h1 className="landing-page-content"> Lets find you a job, are you in? </h1>
       <div className="login-register-forms">
 
-        <Paper square>
+        <Paper elevation={3} className="login-register-tabs">
           <Tabs
             value={form}
             indicatorColor="primary"
