@@ -4,6 +4,7 @@ import {
 } from '@material-ui/core';
 import LoginForm from './LoginForm';
 import './styles.css';
+import RegisterForm from './RegisterForm';
 
 const LandingPage = () => {
   const [form, setForm] = useState('Login');
@@ -15,7 +16,7 @@ const LandingPage = () => {
 
         <Paper square>
           <Tabs
-            value="Login"
+            value={form}
             indicatorColor="primary"
             textColor="primary"
             onChange={(event, newValue) => setForm(newValue)}
@@ -27,7 +28,7 @@ const LandingPage = () => {
           </Tabs>
         </Paper>
 
-        {form === 'Login' ? <LoginForm /> : <h1>Register</h1>}
+        {form === 'Login' ? <LoginForm /> : <RegisterForm />}
 
       </div>
     </div>

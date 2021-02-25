@@ -70,31 +70,31 @@ const RegisterForm = () => {
 
       <FormControl fullWidth="true">
         <InputLabel htmlFor="firstname-field">First Name</InputLabel>
-        <Input id="firstname-field" aria-describedby="username-validation-info" onChange={(event) => setFirstName(event.target.value)} />
+        <Input id="firstname-field" error={!validFirstName()} aria-describedby="username-validation-info" onChange={(event) => setFirstName(event.target.value)} />
         <FormHelperText id="firstname-validation-info">*First Name must start with capital letter</FormHelperText>
       </FormControl>
 
       <FormControl fullWidth="true">
         <InputLabel htmlFor="lastname-field">Last Name</InputLabel>
-        <Input id="lastname-field" aria-describedby="username-validation-info" onChange={(event) => setLastName(event.target.value)} />
+        <Input id="lastname-field" error={!validLastName()} aria-describedby="username-validation-info" onChange={(event) => setLastName(event.target.value)} />
         <FormHelperText id="lastname-validation-info">*Last Name must start with capital letter</FormHelperText>
       </FormControl>
 
       <FormControl fullWidth="true">
         <InputLabel htmlFor="username-field">Username</InputLabel>
-        <Input id="username-field" aria-describedby="username-validation-info" onChange={(event) => setUsername(event.target.value)} />
+        <Input id="username-field" error={!validUsername()} aria-describedby="username-validation-info" onChange={(event) => setUsername(event.target.value)} />
         <FormHelperText id="username-validation-info">*Username must have at least 3 characters</FormHelperText>
       </FormControl>
       <br />
       <FormControl fullWidth="true">
         <InputLabel htmlFor="password-field">Password</InputLabel>
-        <Input id="password-field" type="password" aria-describedby="password-validation-info" onChange={(event) => setPassword(event.target.value)} />
+        <Input id="password-field" error={!validPassword()} type="password" aria-describedby="password-validation-info" onChange={(event) => setPassword(event.target.value)} />
         <FormHelperText id="password-validation-info">*Password must be at least 6 characters long</FormHelperText>
       </FormControl>
       <br />
       <FormControl fullWidth="true">
         <InputLabel htmlFor="confirm-password-field">Confirm Password</InputLabel>
-        <Input id="confirm-password-field" type="password" aria-describedby="password-validation-info" onChange={(event) => setConfirmPassword(event.target.value)} />
+        <Input id="confirm-password-field" error={!checkPasswordMatching() || !validPassword()} type="password" aria-describedby="password-validation-info" onChange={(event) => setConfirmPassword(event.target.value)} />
         <FormHelperText id="confirm-password-validation-info">*Passwords must match</FormHelperText>
       </FormControl>
       <br />
