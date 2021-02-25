@@ -13,9 +13,9 @@ const LandingPage = () => {
       <h1 className="landing-page-content"> Lets find you a job, are you in? </h1>
       <div className="login-register-forms">
 
-        <Paper square>
+        <Paper elevation={3} className="login-register-tabs">
           <Tabs
-            value="Login"
+            value={form}
             indicatorColor="primary"
             textColor="primary"
             onChange={(event, newValue) => setForm(newValue)}
@@ -27,7 +27,7 @@ const LandingPage = () => {
           </Tabs>
         </Paper>
 
-        {form === 'Login' ? <LoginForm /> : <h1>Register</h1>}
+        {form === 'Login' ? <LoginForm /> : <h1> Register </h1>}
 
       </div>
     </div>

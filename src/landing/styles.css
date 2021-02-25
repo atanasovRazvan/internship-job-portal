@@ -9,11 +9,15 @@
 
 .login-register-forms{
     border: 1px solid grey;
-    border-radius: 15px;
-    padding: 15px;
+    border-radius: 1rem;
+    padding: 1rem;
 }
 
 .show-checkbox{
     font-size: small;
     color: #535353;
+}
+
+.login-register-tabs{
+    margin-bottom: 1rem;
 }
