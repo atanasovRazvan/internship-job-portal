@@ -20,7 +20,9 @@ const LoginForm = () => {
   const changePasswordFieldType = () => {
     if (passwordFieldType === 'password') {
       setPasswordFieldType('text');
-    } else setPasswordFieldType('password');
+    } else {
+      setPasswordFieldType('password');
+    }
   };
 
   const buttonDisabledValue = () => {
@@ -40,7 +42,7 @@ const LoginForm = () => {
 
   return (
     <form>
-      <FormControl fullWidth="true">
+      <FormControl fullWidth>
         <InputLabel htmlFor="username-field">Username</InputLabel>
         <Input
           id="username-field"
@@ -51,7 +53,7 @@ const LoginForm = () => {
         <FormHelperText id="username-validation-info">*Username must have at least 3 characters</FormHelperText>
       </FormControl>
       <br />
-      <FormControl fullWidth="true">
+      <FormControl fullWidth>
         <InputLabel htmlFor="password-field">Password</InputLabel>
         <Input
           id="password-field"
