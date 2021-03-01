@@ -5,7 +5,7 @@ import {
   FormControl, FormHelperText, Input, InputLabel,
 } from '@material-ui/core';
 import {
-  validatePassword, validateUsername, validateFirstName, validateLastName, checkPasswordMatching,
+  isPasswordValid, isUsernameValid, isFirstNameValid, isLastNameValid, isConfirmPasswordValid,
 } from './Validations';
 import './styles.css';
 
@@ -16,15 +16,15 @@ const RegisterForm = ({ onSubmit }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
 
-  const buttonDisabledValue = () => {
-    if (!validateUsername(username)
-            || !validatePassword(password)
-            || !validateFirstName(firstName)
-            || !validateLastName(lastName)
-            || !checkPasswordMatching(password, confirmPassword)) {
-      return true;
+  const isRegisterButtonDisabled = () => {
+    if (isUsernameValid(username)
+            && isPasswordValid(password)
+            && isFirstNameValid(firstName)
+            && isLastNameValid(lastName)
+            && isConfirmPasswordValid(password, confirmPassword)) {
+      return false;
     }
-    return false;
+    return true;
   };
 
   return (
@@ -34,7 +34,7 @@ const RegisterForm = ({ onSubmit }) => {
         <InputLabel htmlFor="firstname-field">First Name</InputLabel>
         <Input
           id="firstname-field"
-          error={!validateFirstName(firstName)}
+          error={!isFirstNameValid(firstName)}
           aria-describedby="username-validation-info"
           onChange={(event) => setFirstName(event.target.value)}
         />
@@ -48,7 +48,7 @@ const RegisterForm = ({ onSubmit }) => {
         <InputLabel htmlFor="lastname-field">Last Name</InputLabel>
         <Input
           id="lastname-field"
-          error={!validateLastName(lastName)}
+          error={!isLastNameValid(lastName)}
           aria-describedby="username-validation-info"
           onChange={(event) => setLastName(event.target.value)}
         />
@@ -59,7 +59,7 @@ const RegisterForm = ({ onSubmit }) => {
         <InputLabel htmlFor="username-field">Username</InputLabel>
         <Input
           id="username-field"
-          error={!validateUsername(username)}
+          error={!isUsernameValid(username)}
           aria-describedby="username-validation-info"
           onChange={(event) => setUsername(event.target.value)}
         />
@@ -70,7 +70,7 @@ const RegisterForm = ({ onSubmit }) => {
         <InputLabel htmlFor="password-field">Password</InputLabel>
         <Input
           id="password-field"
-          error={!validatePassword(password)}
+          error={!isPasswordValid(password)}
           type="password"
           aria-describedby="password-validation-info"
           onChange={(event) => setPassword(event.target.value)}
@@ -85,7 +85,7 @@ const RegisterForm = ({ onSubmit }) => {
         <InputLabel htmlFor="confirm-password-field">Confirm Password</InputLabel>
         <Input
           id="confirm-password-field"
-          error={!checkPasswordMatching(password, confirmPassword) || !validatePassword(password)}
+          error={!isConfirmPasswordValid(password, confirmPassword)}
           type="password"
           aria-describedby="password-validation-info"
           onChange={(event) => setConfirmPassword(event.target.value)}
@@ -97,8 +97,8 @@ const RegisterForm = ({ onSubmit }) => {
         <Button
           variant="contained"
           color="primary"
-          disabled={buttonDisabledValue()}
           onClick={() => onSubmit(firstName, lastName, username, password, confirmPassword)}
+          disabled={isRegisterButtonDisabled()}
         >
           Register NOW
         </Button>

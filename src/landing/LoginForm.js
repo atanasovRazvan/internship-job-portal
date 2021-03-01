@@ -8,7 +8,7 @@ import {
   Visibility, VisibilityOff,
 } from '@material-ui/icons';
 import {
-  validateUsername, validatePassword,
+  isUsernameValid, isPasswordValid,
 } from './Validations';
 import './styles.css';
 
@@ -26,11 +26,12 @@ const LoginForm = ({ onSubmit }) => {
     }
   };
 
-  const buttonDisabledValue = () => {
-    if (!validateUsername(username) || !validatePassword(password)) {
-      return true;
+  const isLoginButtonDisabled = () => {
+    if (isUsernameValid(username)
+        && isPasswordValid(password)) {
+      return false;
     }
-    return false;
+    return true;
   };
 
   return (
@@ -39,7 +40,7 @@ const LoginForm = ({ onSubmit }) => {
         <InputLabel htmlFor="username-field">Username</InputLabel>
         <Input
           id="username-field"
-          error={!validateUsername(username)}
+          error={!isUsernameValid(username)}
           aria-describedby="username-validation-info"
           onChange={(event) => setUsername(event.target.value)}
         />
@@ -50,7 +51,7 @@ const LoginForm = ({ onSubmit }) => {
         <InputLabel htmlFor="password-field">Password</InputLabel>
         <Input
           id="password-field"
-          error={!validatePassword(password)}
+          error={!isPasswordValid(password)}
           type={passwordFieldType}
           aria-describedby="password-validation-info"
           onChange={(event) => setPassword(event.target.value)}
@@ -75,8 +76,8 @@ const LoginForm = ({ onSubmit }) => {
         <Button
           variant="contained"
           color="primary"
-          disabled={buttonDisabledValue()}
           onClick={() => onSubmit(username, password)}
+          disabled={isLoginButtonDisabled()}
         >
           Log in
         </Button>
