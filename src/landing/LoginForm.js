@@ -26,14 +26,16 @@ const LoginForm = () => {
   };
 
   const buttonDisabledValue = () => {
-    if (!validateUsername(username) || !validatePassword(password)) {
+    if (validateUsername(username)
+        && validatePassword(password)) {
       return true;
     }
     return false;
   };
 
   const handleLoginButton = () => {
-    if (username === 'razvan' && password === 'masini') {
+    if (username === 'razvan'
+        && password === 'masini') {
       alert('Login successful. Redirecting to home...');
     } else {
       alert('Username or Password incorrect');

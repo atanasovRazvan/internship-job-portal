@@ -16,11 +16,11 @@ const RegisterForm = () => {
   const [lastName, setLastName] = useState('');
 
   const buttonDisabledValue = () => {
-    if (!validateUsername(username)
-            || !validatePassword(password)
-            || !validateFirstName(firstName)
-            || !validateLastName(lastName)
-            || !checkPasswordMatching(password, confirmPassword)) {
+    if (validateUsername(username)
+            && validatePassword(password)
+            && validateFirstName(firstName)
+            && validateLastName(lastName)
+            && checkPasswordMatching(password, confirmPassword)) {
       return true;
     }
     return false;
