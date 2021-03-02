@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   Button,
   FormControl, FormHelperText, Input, InputLabel,
@@ -8,7 +9,7 @@ import {
 } from './Validations';
 import './styles.css';
 
-const RegisterForm = () => {
+const RegisterForm = ({ onSubmit }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -24,14 +25,6 @@ const RegisterForm = () => {
       return false;
     }
     return true;
-  };
-
-  const handleRegisterButton = () => {
-    if (username === 'razvan') {
-      alert('This username already exists!');
-    } else {
-      alert('Register successful! Redirecting to login...');
-    }
   };
 
   return (
@@ -104,14 +97,22 @@ const RegisterForm = () => {
         <Button
           variant="contained"
           color="primary"
+          onClick={() => onSubmit(firstName, lastName, username, password, confirmPassword)}
           disabled={isRegisterButtonDisabled()}
-          onClick={() => handleRegisterButton()}
         >
           Register NOW
         </Button>
       </FormControl>
     </form>
   );
+};
+
+RegisterForm.defaultProps = {
+  onSubmit: () => {},
+};
+
+RegisterForm.propTypes = {
+  onSubmit: PropTypes.func,
 };
 
 export default RegisterForm;

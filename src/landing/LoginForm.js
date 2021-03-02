@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   Button, InputAdornment,
   FormControl, FormHelperText, Input, InputLabel, IconButton,
@@ -11,7 +12,7 @@ import {
 } from './Validations';
 import './styles.css';
 
-const LoginForm = () => {
+const LoginForm = ({ onSubmit }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -31,15 +32,6 @@ const LoginForm = () => {
       return false;
     }
     return true;
-  };
-
-  const handleLoginButton = () => {
-    if (username === 'razvan'
-        && password === 'masini') {
-      alert('Login successful. Redirecting to home...');
-    } else {
-      alert('Username or Password incorrect');
-    }
   };
 
   return (
@@ -84,14 +76,22 @@ const LoginForm = () => {
         <Button
           variant="contained"
           color="primary"
+          onClick={() => onSubmit(username, password)}
           disabled={isLoginButtonDisabled()}
-          onClick={() => handleLoginButton()}
         >
           Log in
         </Button>
       </FormControl>
     </form>
   );
+};
+
+LoginForm.defaultProps = {
+  onSubmit: () => {},
+};
+
+LoginForm.propTypes = {
+  onSubmit: PropTypes.func,
 };
 
 export default LoginForm;
