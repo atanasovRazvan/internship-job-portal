@@ -1,3 +1,21 @@
 .App {
   text-align: center;
 }
+
+.notfound-container{
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}
+
+.notfound-container img{
+  max-height: 250px;
+  max-width: 250px;
+  width: 100%;
+  height: auto;
+}
+
+.notfound-container p{
+  font-size: x-large;
+  margin-bottom: 2rem;
+}
