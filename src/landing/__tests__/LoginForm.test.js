@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  findByLabelText, findByText, screen,
+  findByLabelText, findByText,
 } from '@testing-library/dom';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';

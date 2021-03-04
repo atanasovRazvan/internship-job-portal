@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   findByLabelText,
-  findByText, fireEvent, screen,
+  findByText, fireEvent,
 } from '@testing-library/dom';
 import { render } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
