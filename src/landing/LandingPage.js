@@ -12,38 +12,33 @@ const LandingPage = () => {
   const [form, setForm] = useState('Login');
   const [usernameState, setUsernameState] = useState(null);
   const [passwordState, setPasswordState] = useState(null);
+  const [loginResult, setLoginResult] = useState(null);
+  const [registerResult, setRegisterResult] = useState(null);
 
   const [getUsers, {
-    data: queryData, error: queryError, loading: queryLoading,
+    data: queryData, error: queryError,
   }] = useLazyQuery(GET_USERS);
 
   useEffect((() => {
     if (queryData && usernameState && passwordState) {
-      console.log(queryData);
       if (queryData.users.find((user) => user.username === usernameState
           && user.password === passwordState)) {
-        alert(`Login successful for ${usernameState}`);
+        setLoginResult('success');
       } else {
-        alert('Username or password incorrect');
+        setLoginResult('credentialsError');
       }
     }
 
-    if (queryLoading) {
-      console.log('Loading');
-      return;
-    }
-
     if (queryError) {
-      console.log(queryError);
-      alert('Something went wrong (error)');
+      setLoginResult('serverError');
     }
   }), [queryData, usernameState, passwordState]);
 
   const [createUser, {
     error: mutationError,
   }] = useMutation(CREATE_USER, {
-    onError(err) {
-      alert(`Calling error: ${err}`);
+    onError() {
+      setRegisterResult('error');
     },
   });
 
@@ -61,16 +56,15 @@ const LandingPage = () => {
     });
 
     if (mutationError) {
-      alert('Something went wrong...');
-      console.log(mutationError);
+      setRegisterResult('error');
     } else {
-      alert('Register successful! Redirecting to login...');
+      setRegisterResult('success');
     }
   };
 
   return (
     <div className="landing-page">
-      <h1 className="landing-page-content"> Lets find you a job, are you in? </h1>
+      <h1 className="landing-page-content">Lets find you a job, are you in?</h1>
       <div className="login-register-forms">
 
         <Paper elevation={3} className="login-register-tabs">
@@ -87,7 +81,9 @@ const LandingPage = () => {
           </Tabs>
         </Paper>
 
-        {form === 'Login' ? <LoginForm onSubmit={submitLogin} /> : <RegisterForm onSubmit={submitRegister} />}
+        {form === 'Login'
+          ? <LoginForm onSubmit={submitLogin} loginStatus={loginResult} />
+          : <RegisterForm onSubmit={submitRegister} registerStatus={registerResult} />}
 
       </div>
     </div>

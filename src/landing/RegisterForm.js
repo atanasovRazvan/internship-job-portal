@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { string } from 'prop-types';
 import {
   Button,
   FormControl, FormHelperText, Input, InputLabel,
 } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 import {
   isPasswordValid, isUsernameValid, isFirstNameValid, isLastNameValid, isConfirmPasswordValid,
 } from './Validations';
 import './styles.css';
 
-const RegisterForm = ({ onSubmit }) => {
+const RegisterForm = ({ onSubmit, registerStatus }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -27,9 +28,17 @@ const RegisterForm = ({ onSubmit }) => {
     return true;
   };
 
+  const displayRegisterStatus = () => {
+    if (registerStatus === 'error') {
+      return <Alert severity="error" variant="filled">Server error</Alert>;
+    }
+
+    return <Alert severity="success" variant="filled">Register successful</Alert>;
+  };
+
   return (
     <form>
-
+      {registerStatus ? displayRegisterStatus() : null}
       <FormControl fullWidth>
         <InputLabel htmlFor="firstname-field">First Name</InputLabel>
         <Input
@@ -109,10 +118,12 @@ const RegisterForm = ({ onSubmit }) => {
 
 RegisterForm.defaultProps = {
   onSubmit: () => {},
+  registerStatus: null,
 };
 
 RegisterForm.propTypes = {
   onSubmit: PropTypes.func,
+  registerStatus: string,
 };
 
 export default RegisterForm;
