@@ -39,14 +39,6 @@ const LandingPage = () => {
     }
   }), [queryData, usernameState, passwordState]);
 
-  const submitLogin = (username, password) => {
-    setUsernameState(username);
-    setPasswordState(password);
-    getUsers();
-
-    // Followed by useEffect's body
-  };
-
   const [createUser, {
     error: mutationError,
   }] = useMutation(CREATE_USER, {
@@ -54,6 +46,12 @@ const LandingPage = () => {
       alert(`Calling error: ${err}`);
     },
   });
+
+  const submitLogin = (username, password) => {
+    setUsernameState(username);
+    setPasswordState(password);
+    getUsers();
+  };
 
   const submitRegister = (firstName, lastName, username, password) => {
     createUser({
