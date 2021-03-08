@@ -3,7 +3,7 @@ import './App.css';
 import { ApolloProvider } from '@apollo/client';
 
 import apolloClient from './apollo';
-import AppRouter from './RouterLogic';
+import AppRouter from './AppRouter';
 
 function App() {
   return (

@@ -7,6 +7,7 @@ import LoginForm from './LoginForm';
 import './styles.css';
 import RegisterForm from './RegisterForm';
 import { CREATE_USER, GET_USERS } from '../sources';
+import loginStates from './constants';
 
 const LandingPage = () => {
   const [form, setForm] = useState('Login');
@@ -23,14 +24,14 @@ const LandingPage = () => {
     if (queryData && usernameState && passwordState) {
       if (queryData.users.find((user) => user.username === usernameState
           && user.password === passwordState)) {
-        setLoginResult('success');
+        setLoginResult(loginStates.success);
       } else {
-        setLoginResult('credentialsError');
+        setLoginResult(loginStates.credentialsError);
       }
     }
 
     if (queryError) {
-      setLoginResult('serverError');
+      setLoginResult(loginStates.serverError);
     }
   }), [queryData, usernameState, passwordState]);
 
