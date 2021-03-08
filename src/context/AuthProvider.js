@@ -7,8 +7,6 @@ const AuthProvider = ({ children }) => {
   const [username, setUsername] = useState(null);
   const [userRole, setUserRole] = useState(0);
 
-  console.log(username);
-
   const value = {
     username,
     userRole,

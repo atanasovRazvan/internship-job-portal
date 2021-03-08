@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import PropTypes, { string } from 'prop-types';
+import PropTypes from 'prop-types';
 import LandingPage from '../landing/LandingPage';
 import { AuthContext } from '../context/AuthProvider';
 
@@ -12,15 +12,15 @@ const PrivateRoute = ({ path, exact, component }) => {
 };
 
 PrivateRoute.defaultProps = {
-  component: PropTypes.func,
-  path: string,
-  exact: string,
+  component: LandingPage,
+  path: '/',
+  exact: true,
 };
 
 PrivateRoute.propTypes = {
-  component: LandingPage,
-  path: '/',
-  exact: 'true',
+  component: PropTypes.func,
+  path: PropTypes.string,
+  exact: PropTypes.bool,
 };
 
 export default PrivateRoute;

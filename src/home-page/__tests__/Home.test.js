@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { fireEvent, screen } from '@testing-library/dom';
+import { screen } from '@testing-library/dom';
 import React from 'react';
 import HomePage from '../Home';
 import { AuthContext } from '../../context/AuthProvider';
