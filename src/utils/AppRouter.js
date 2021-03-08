@@ -2,10 +2,10 @@ import {
   BrowserRouter as Router, Redirect, Route, Switch,
 } from 'react-router-dom';
 import React from 'react';
-import LandingPage from '../landing/LandingPage';
 import NotFoundPage from './NotFound';
 import PrivateRoute from './PrivateRoute';
 import HomePage from '../home-page/Home';
+import LandingPage from '../landing/LandingPage';
 
 const AppRouter = () => (
   <Router>
