@@ -7,12 +7,14 @@ import {
 import {
   Visibility, VisibilityOff,
 } from '@material-ui/icons';
+import { Alert } from '@material-ui/lab';
 import {
   isUsernameValid, isPasswordValid,
 } from './Validations';
 import './styles.css';
+import loginStates from './constants';
 
-const LoginForm = ({ onSubmit }) => {
+const LoginForm = ({ onSubmit, loginStatus }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -26,16 +28,28 @@ const LoginForm = ({ onSubmit }) => {
     }
   };
 
-  const isLoginButtonDisabled = () => {
-    if (isUsernameValid(username)
-        && isPasswordValid(password)) {
-      return false;
+  const isLoginButtonDisabled = () => !(isUsernameValid(username)
+        && isPasswordValid(password));
+
+  const displayLoginStatus = () => {
+    if (loginStatus === loginStates.success) {
+      return <Alert severity="success" variant="filled">Login successful</Alert>;
     }
-    return true;
+
+    if (loginStatus === loginStates.credentialsError) {
+      return <Alert severity="error" variant="filled">Username or password incorrect</Alert>;
+    }
+
+    if (loginStatus === loginStates.serverError) {
+      return <Alert severity="error" variant="filled">Server error</Alert>;
+    }
+
+    return null;
   };
 
   return (
     <form>
+      {loginStatus ? displayLoginStatus() : null }
       <FormControl fullWidth>
         <InputLabel htmlFor="username-field">Username</InputLabel>
         <Input
@@ -88,10 +102,12 @@ const LoginForm = ({ onSubmit }) => {
 
 LoginForm.defaultProps = {
   onSubmit: () => {},
+  loginStatus: null,
 };
 
 LoginForm.propTypes = {
   onSubmit: PropTypes.func,
+  loginStatus: PropTypes.string,
 };
 
 export default LoginForm;
