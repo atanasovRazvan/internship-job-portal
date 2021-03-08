@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  findByLabelText, findByText,
+  screen,
 } from '@testing-library/dom';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -8,8 +8,6 @@ import RegisterForm from '../RegisterForm';
 import '@testing-library/jest-dom/extend-expect';
 
 describe('tests for register form', async () => {
-  let container;
-
   let usernameInput;
   let passwordInput;
   let firstNameInput;
@@ -19,13 +17,13 @@ describe('tests for register form', async () => {
   let registerButton;
 
   beforeEach(async () => {
-    container = render(<RegisterForm />).container;
-    usernameInput = await findByLabelText(container, 'Username');
-    passwordInput = await findByLabelText(container, 'Password');
-    firstNameInput = await findByLabelText(container, 'First Name');
-    lastNameInput = await findByLabelText(container, 'Last Name');
-    confirmPasswordInput = await findByLabelText(container, 'Confirm Password');
-    registerButton = await findByText(container, 'Register NOW');
+    render(<RegisterForm />);
+    usernameInput = screen.getByLabelText('Username');
+    passwordInput = screen.getByLabelText('Password');
+    firstNameInput = screen.getByLabelText('First Name');
+    lastNameInput = screen.getByLabelText('Last Name');
+    confirmPasswordInput = screen.getByLabelText('Confirm Password');
+    registerButton = screen.getByText('Register NOW');
   });
 
   it('should be displayed as error if the username field is empty', async () => {

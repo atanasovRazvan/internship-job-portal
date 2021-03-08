@@ -5,7 +5,7 @@ import React from 'react';
 import LandingPage from './landing/LandingPage';
 import NotFoundPage from './NotFound';
 
-const MyRouter = () => (
+const AppRouter = () => (
   <Router>
     <Switch>
       <Route exact path="/" component={LandingPage} />
@@ -15,4 +15,4 @@ const MyRouter = () => (
   </Router>
 );
 
-export default MyRouter;
+export default AppRouter;

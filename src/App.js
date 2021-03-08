@@ -3,12 +3,12 @@ import './App.css';
 import { ApolloProvider } from '@apollo/client';
 
 import apolloClient from './apollo';
-import MyRouter from './RouterLogic';
+import AppRouter from './RouterLogic';
 
 function App() {
   return (
     <ApolloProvider client={apolloClient}>
-      <MyRouter />
+      <AppRouter />
     </ApolloProvider>
   );
 }
