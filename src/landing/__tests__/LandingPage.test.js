@@ -5,9 +5,7 @@ import {
 } from '@testing-library/dom';
 import { render } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
-import { BrowserRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
-import LandingPage from '../LandingPage';
 import '@testing-library/jest-dom/extend-expect';
 import { CREATE_USER, GET_USERS } from '../../sources';
 import AuthProvider from '../../context/AuthProvider';
