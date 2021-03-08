@@ -12,6 +12,7 @@ import {
   isUsernameValid, isPasswordValid,
 } from './Validations';
 import './styles.css';
+import loginStates from './constants';
 
 const LoginForm = ({ onSubmit, loginStatus }) => {
   const [username, setUsername] = useState('');
@@ -31,15 +32,19 @@ const LoginForm = ({ onSubmit, loginStatus }) => {
         && isPasswordValid(password));
 
   const displayLoginStatus = () => {
-    if (loginStatus === 'success') {
+    if (loginStatus === loginStates.success) {
       return <Alert severity="success" variant="filled">Login successful</Alert>;
     }
 
-    if (loginStatus === 'credentialsError') {
+    if (loginStatus === loginStates.credentialsError) {
       return <Alert severity="error" variant="filled">Username or password incorrect</Alert>;
     }
 
-    return <Alert severity="error" variant="filled">Server error</Alert>;
+    if (loginStatus === loginStates.serverError) {
+      return <Alert severity="error" variant="filled">Server error</Alert>;
+    }
+
+    return null;
   };
 
   return (
