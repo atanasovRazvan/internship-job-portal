@@ -5,10 +5,13 @@ import {
 } from '@testing-library/dom';
 import { render } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
+import { BrowserRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import LandingPage from '../LandingPage';
 import '@testing-library/jest-dom/extend-expect';
 import { CREATE_USER, GET_USERS } from '../../sources';
+import AuthProvider from '../../context/AuthProvider';
+import AppRouter from '../../utils/AppRouter';
 
 const mocks = [
   {
@@ -46,7 +49,9 @@ describe('tests for login form', async () => {
   beforeEach(async () => {
     render(
       <MockedProvider mocks={mocks}>
-        <LandingPage />
+        <AuthProvider>
+          <AppRouter />
+        </AuthProvider>
       </MockedProvider>,
     );
 
@@ -70,14 +75,14 @@ describe('tests for login form', async () => {
     expect(screen.getByText('Register NOW', { selector: 'span' })).toBeInTheDocument();
   });
 
-  it('should display success message for login if the user exists', async () => {
+  it('should go to home page on login if the user exists', async () => {
     const usernameInput = screen.getByLabelText('Username');
     const passwordInput = screen.getByLabelText('Password');
     userEvent.type(usernameInput, 'razvan');
     userEvent.type(passwordInput, 'parola123');
     const loginButton = screen.getByText('Log in');
     await fireEvent.click(loginButton);
-    expect(await screen.findByText('Login successful')).toBeInTheDocument();
+    expect(await screen.findByText('Hello, razvan!')).toBeInTheDocument();
   });
 
   it('should display error message for login if the user does not exist', async () => {

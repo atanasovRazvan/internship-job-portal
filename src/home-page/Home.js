@@ -4,44 +4,7 @@ import NavBar from './NavBar';
 const HomePage = () => (
   <div>
     <NavBar />
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
-    <p>a</p>
+    <h1>Nice Home Page, Very Nice</h1>
   </div>
 );
 
