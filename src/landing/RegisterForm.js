@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PropTypes, { string } from 'prop-types';
+import PropTypes from 'prop-types';
 import {
   Button,
   FormControl, FormHelperText, Input, InputLabel,
@@ -123,7 +123,7 @@ RegisterForm.defaultProps = {
 
 RegisterForm.propTypes = {
   onSubmit: PropTypes.func,
-  registerStatus: string,
+  registerStatus: PropTypes.string,
 };
 
 export default RegisterForm;

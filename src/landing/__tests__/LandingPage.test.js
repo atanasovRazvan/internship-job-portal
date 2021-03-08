@@ -1,7 +1,7 @@
 import React from 'react';
 import {
-  findByLabelText,
-  findByText, fireEvent,
+  fireEvent,
+  screen,
 } from '@testing-library/dom';
 import { render } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
@@ -40,69 +40,67 @@ const mocks = [
 ];
 
 describe('tests for login form', async () => {
-  let container;
-
   let loginTab;
   let registerTab;
 
   beforeEach(async () => {
-    container = render(
+    render(
       <MockedProvider mocks={mocks}>
         <LandingPage />
       </MockedProvider>,
-    ).container;
+    );
 
-    loginTab = await findByText(container, 'Login');
-    registerTab = await findByText(container, 'Register');
+    loginTab = screen.getByText('Login');
+    registerTab = screen.getByText('Register');
   });
 
   it('should display the title', async () => {
-    const title = await findByText(container, 'Lets find you a job, are you in?');
+    const title = screen.getByText('Lets find you a job, are you in?');
     expect(title).toBeInTheDocument();
   });
 
   it('should display LoginForm if LOG IN tab is selected', async () => {
     expect(loginTab.parentElement.getAttribute('aria-selected')).toBe('true');
-    expect(await findByText(container, 'Log in', { selector: 'span' })).toBeInTheDocument();
+    expect(screen.getByText('Log in', { selector: 'span' })).toBeInTheDocument();
   });
 
   it('should display RegisterForm if REGISTER tab is selected', async () => {
     fireEvent.click(registerTab);
     expect(registerTab.parentElement.getAttribute('aria-selected')).toBe('true');
-    expect(await findByText(container, 'Register NOW', { selector: 'span' })).toBeInTheDocument();
+    expect(screen.getByText('Register NOW', { selector: 'span' })).toBeInTheDocument();
   });
 
   it('should display success message for login if the user exists', async () => {
-    const usernameInput = await findByLabelText(container, 'Username');
-    const passwordInput = await findByLabelText(container, 'Password');
+    const usernameInput = screen.getByLabelText('Username');
+    const passwordInput = screen.getByLabelText('Password');
     userEvent.type(usernameInput, 'razvan');
     userEvent.type(passwordInput, 'parola123');
-    const loginButton = await findByText(container, 'Log in');
+    const loginButton = screen.getByText('Log in');
     await fireEvent.click(loginButton);
-    expect(await findByText(container, 'Login successful')).toBeInTheDocument();
+    expect(await screen.findByText('Login successful')).toBeInTheDocument();
   });
 
   it('should display error message for login if the user does not exist', async () => {
-    const usernameInput = await findByLabelText(container, 'Username');
-    const passwordInput = await findByLabelText(container, 'Password');
+    const usernameInput = screen.getByLabelText('Username');
+    const passwordInput = screen.getByLabelText('Password');
     userEvent.type(usernameInput, 'razvan');
     userEvent.type(passwordInput, 'parola112');
-    const loginButton = await findByText(container, 'Log in');
+    const loginButton = screen.getByText('Log in');
     await fireEvent.click(loginButton);
 
-    expect(await findByText(container, 'Username or password incorrect')).toBeInTheDocument();
+    expect(await screen.findByText('Username or password incorrect')).toBeInTheDocument();
   });
 
   it('should display success message if the register finished successfully', async () => {
     fireEvent.click(registerTab);
 
-    const usernameInput = await findByLabelText(container, 'Username');
-    const passwordInput = await findByLabelText(container, 'Password');
+    const usernameInput = screen.getByLabelText('Username');
+    const passwordInput = screen.getByLabelText('Password');
 
-    const firstNameInput = await findByLabelText(container, 'First Name');
-    const lastNameInput = await findByLabelText(container, 'Last Name');
-    const confirmPasswordInput = await findByLabelText(container, 'Confirm Password');
-    const registerButton = await findByText(container, 'Register NOW');
+    const firstNameInput = screen.getByLabelText('First Name');
+    const lastNameInput = screen.getByLabelText('Last Name');
+    const confirmPasswordInput = screen.getByLabelText('Confirm Password');
+    const registerButton = screen.getByText('Register NOW');
 
     userEvent.type(firstNameInput, 'Razvan');
     userEvent.type(lastNameInput, 'Atanasov');
@@ -111,6 +109,6 @@ describe('tests for login form', async () => {
     userEvent.type(confirmPasswordInput, 'parola123');
     await fireEvent.click(registerButton);
 
-    expect(await findByText(container, 'Register successful')).toBeInTheDocument();
+    expect(screen.getByText('Register successful')).toBeInTheDocument();
   });
 });

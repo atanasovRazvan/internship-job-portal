@@ -7,7 +7,7 @@ import NotFoundPage from './NotFound';
 import PrivateRoute from './PrivateRoute';
 import HomePage from '../home-page/Home';
 
-const MyRouter = () => (
+const AppRouter = () => (
   <Router>
     <Switch>
       <Route exact path="/" component={LandingPage} />
@@ -18,4 +18,4 @@ const MyRouter = () => (
   </Router>
 );
 
-export default MyRouter;
+export default AppRouter;
