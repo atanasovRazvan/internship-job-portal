@@ -123,7 +123,7 @@ RegisterForm.defaultProps = {
 
 RegisterForm.propTypes = {
   onSubmit: PropTypes.func,
-  registerStatus: string,
+  registerStatus: PropTypes.string,
 };
 
 export default RegisterForm;

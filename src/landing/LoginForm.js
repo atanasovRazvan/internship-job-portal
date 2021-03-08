@@ -102,7 +102,7 @@ LoginForm.defaultProps = {
 
 LoginForm.propTypes = {
   onSubmit: PropTypes.func,
-  loginStatus: string,
+  loginStatus: PropTypes.string,
 };
 
 export default LoginForm;
