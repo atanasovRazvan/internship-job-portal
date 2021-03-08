@@ -6,7 +6,6 @@ import apolloClient from './apollo';
 import AppRouter from './utils/AppRouter';
 import AuthProvider from './context/AuthProvider';
 
-
 function App() {
   return (
     <ApolloProvider client={apolloClient}>
