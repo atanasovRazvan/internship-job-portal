@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes, { string } from 'prop-types';
 import LandingPage from '../landing/LandingPage';
+import { AuthContext } from '../context/AuthProvider';
 
 const PrivateRoute = ({ path, exact, component }) => {
-  const condition = true;
+  const { username } = useContext(AuthContext);
 
-  return condition ? (<Route path={path} exact={exact} component={component} />)
+  return username ? (<Route path={path} exact={exact} component={component} />)
     : (<Redirect to="/" />);
 };
 

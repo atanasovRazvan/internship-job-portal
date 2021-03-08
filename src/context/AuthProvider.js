@@ -1,19 +1,19 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
-const AuthContext = React.createContext(null);
+export const AuthContext = React.createContext();
 
 const AuthProvider = ({ children }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [pendingAuthentication, setPendingAuthentication] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [username, setUsername] = useState(null);
+  const [userRole, setUserRole] = useState(0);
 
-  const login = useCallback(loginCallback, [username, password]);
-  const logout = useCallback(logoutCallBack, []);
-  useEffect(authEffect, [pendingAuthentication]);
+  console.log(username);
 
   const value = {
-    username, setUsername,
+    username,
+    userRole,
+    setUsername,
+    setUserRole,
   };
 
   return (
@@ -21,14 +21,14 @@ const AuthProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
+};
 
-  function loginCallback(username, password) {
-    if (username !== '' && password != '') {
-      setPendingAuthentication(true);
-      setUsername(username);
-      setPassword(password);
-    }
-  }
+AuthProvider.defaultProps = {
+  children: null,
+};
+
+AuthProvider.propTypes = {
+  children: PropTypes.node,
 };
 
 export default AuthProvider;

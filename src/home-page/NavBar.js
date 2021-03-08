@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   AppBar, Button, IconButton, Toolbar, Typography,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from '@material-ui/styles';
+import { AuthContext } from '../context/AuthProvider';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,7 +19,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NavBar = () => {
+  const { username, setUsername, setUserRole } = useContext(AuthContext);
   const classes = useStyles();
+
+  const handleLogout = () => {
+    setUsername(null);
+    setUserRole(0);
+  };
+
   return (
     <AppBar position="fixed">
       <Toolbar>
@@ -26,9 +34,12 @@ const NavBar = () => {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" className={classes.title}>
-          News
+          Hello,
+          {' '}
+          {username}
+          !
         </Typography>
-        <Button color="inherit">Logout</Button>
+        <Button color="inherit" onClick={() => handleLogout()}>Logout</Button>
       </Toolbar>
     </AppBar>
   );
