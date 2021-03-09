@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_JOBS } from '../sources';
 import Job from './Job';
+import './styles.css';
 
 const JobList = () => {
   const [jobList, setJobList] = useState([]);
@@ -16,7 +17,7 @@ const JobList = () => {
   }, [data]);
 
   return (
-    <div>
+    <div className="jobs-container">
       {error ? null : (jobList && jobList.map((job) => (
         <Job
           key={job.id}

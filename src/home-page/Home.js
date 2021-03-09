@@ -7,7 +7,7 @@ const HomePage = () => (
   <div>
     <NavBar />
     <div className="home-content">
-      <h1>We gathered some jobs for you, here they are!</h1>
+      <h1 className="home-title">We gathered some jobs for you, here they are!</h1>
       <JobList />
     </div>
   </div>

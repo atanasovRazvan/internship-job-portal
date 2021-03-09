@@ -9,4 +9,12 @@
 
 .home-content{
     margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.home-title{
+    margin: auto;
+    text-align: center;
 }
