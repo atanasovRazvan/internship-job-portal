@@ -6,6 +6,7 @@ import NotFoundPage from '../not-found/NotFound';
 import PrivateRoute from './PrivateRoute';
 import HomePage from '../home-page/Home';
 import LandingPage from '../landing/LandingPage';
+import JobDetails from '../job-details/JobDetails';
 
 const AppRouter = () => (
   <Router>
@@ -13,6 +14,7 @@ const AppRouter = () => (
       <Route exact path="/" component={LandingPage} />
       <Route path="/notfound" component={NotFoundPage} />
       <PrivateRoute path="/home" component={HomePage} />
+      <PrivateRoute path="/job/:id" component={JobDetails} />
       <Redirect to="/notfound" />
     </Switch>
   </Router>

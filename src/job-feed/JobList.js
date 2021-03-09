@@ -21,6 +21,7 @@ const JobList = () => {
       {error ? null : (jobList && jobList.map((job) => (
         <Job
           key={job.id}
+          id={job.id}
           companyName={job.company.name}
           description={job.description}
           name={job.name}
