@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
 import React from 'react';
+import { MockedProvider } from '@apollo/client/testing';
 import HomePage from '../Home';
 import { AuthContext } from '../../context/AuthProvider';
 
@@ -14,13 +15,15 @@ describe('tests for home', async () => {
 
   beforeEach(async () => {
     render(
-      <AuthContext.Provider value={value}>
-        <HomePage />
-      </AuthContext.Provider>,
+      <MockedProvider>
+        <AuthContext.Provider value={value}>
+          <HomePage />
+        </AuthContext.Provider>
+      </MockedProvider>,
     );
   });
 
   it('should display the home page containing its title', async () => {
-    expect(screen.getByText('Nice Home Page, Very Nice')).toBeInTheDocument();
+    expect(screen.getByText('We gathered some jobs for you, here they are!')).toBeInTheDocument();
   });
 });

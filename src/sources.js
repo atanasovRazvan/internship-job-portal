@@ -20,3 +20,22 @@ export const CREATE_USER = gql`
       }
 }
 `;
+
+export const GET_JOBS = gql`
+    query Jobs{
+      jobs{
+        id,
+        name,
+        description,
+        company{
+          name,
+        }
+        jobSkills{
+          skill{
+            id,
+            name,
+          }
+        }
+      }
+    }
+`;
