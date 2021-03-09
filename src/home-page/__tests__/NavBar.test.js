@@ -20,11 +20,11 @@ describe('tests for navbar', async () => {
     );
   });
 
-  it('should display the user name', async () => {
+  it('should display the user name on the navbar title', async () => {
     expect(screen.getByText('Hello, razvan!')).toBeInTheDocument();
   });
 
-  it('should setUsername to null if Logout button is pressed', async () => {
+  it('should set username to null if Logout button is pressed', async () => {
     const logoutBtn = screen.getByText('Logout');
     fireEvent.click(logoutBtn);
     expect(value.setUsername).toHaveBeenCalledTimes(1);

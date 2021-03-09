@@ -20,7 +20,7 @@ describe('tests for home', async () => {
     );
   });
 
-  it('should display the user name', async () => {
+  it('should display the home page containing its title', async () => {
     expect(screen.getByText('Nice Home Page, Very Nice')).toBeInTheDocument();
   });
 });

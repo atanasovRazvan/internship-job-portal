@@ -1,10 +1,11 @@
 import React from 'react';
 import NavBar from './NavBar';
+import './styles.css';
 
 const HomePage = () => (
   <div>
     <NavBar />
-    <h1>Nice Home Page, Very Nice</h1>
+    <div className="home-content">Nice Home Page, Very Nice</div>
   </div>
 );
 

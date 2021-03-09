@@ -27,10 +27,12 @@ const LandingPage = () => {
 
   useEffect((() => {
     if (queryData && usernameState && passwordState) {
-      if (queryData.users.find((user) => user.username === usernameState
-          && user.password === passwordState)) {
+      const foundUser = queryData.users.find((user) => user.username === usernameState
+                                                        && user.password === passwordState);
+
+      if (foundUser) {
         setUsername(usernameState);
-        setUserRole(3);
+        setUserRole(foundUser.userRole);
         setLoginResult(loginStates.success);
       } else {
         setLoginResult(loginStates.credentialsError);
