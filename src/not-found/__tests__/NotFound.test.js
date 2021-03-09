@@ -3,7 +3,7 @@ import {
   screen,
 } from '@testing-library/dom';
 import { render } from '@testing-library/react';
-import NotFound from './NotFound';
+import NotFound from '../NotFound';
 
 describe('tests for NotFound page', async () => {
   beforeEach(() => {

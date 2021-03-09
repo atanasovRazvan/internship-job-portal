@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import {
   Paper, Tab, Tabs,
 } from '@material-ui/core';
+import { Redirect } from 'react-router-dom';
 import LoginForm from './LoginForm';
 import './styles.css';
 import RegisterForm from './RegisterForm';
 import { CREATE_USER, GET_USERS } from '../sources';
+import { AuthContext } from '../context/AuthProvider';
 import loginStates from './constants';
 
 const LandingPage = () => {
@@ -15,6 +17,9 @@ const LandingPage = () => {
   const [passwordState, setPasswordState] = useState(null);
   const [loginResult, setLoginResult] = useState(null);
   const [registerResult, setRegisterResult] = useState(null);
+  const {
+    setUsername, setUserRole,
+  } = useContext(AuthContext);
 
   const [getUsers, {
     data: queryData, error: queryError,
@@ -22,8 +27,12 @@ const LandingPage = () => {
 
   useEffect((() => {
     if (queryData && usernameState && passwordState) {
-      if (queryData.users.find((user) => user.username === usernameState
-          && user.password === passwordState)) {
+      const foundUser = queryData.users.find((user) => user.username === usernameState
+                                                        && user.password === passwordState);
+
+      if (foundUser) {
+        setUsername(usernameState);
+        setUserRole(foundUser.userRole);
         setLoginResult(loginStates.success);
       } else {
         setLoginResult(loginStates.credentialsError);
@@ -65,6 +74,7 @@ const LandingPage = () => {
 
   return (
     <div className="landing-page">
+      {loginResult === loginStates.success ? <Redirect to="/home" /> : null}
       <h1 className="landing-page-content">Lets find you a job, are you in?</h1>
       <div className="login-register-forms">
 
