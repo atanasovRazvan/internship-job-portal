@@ -26,7 +26,7 @@ const JobCard = ({
         Job Skills
       </Typography>
       <br />
-      {jobSkills.length > 0 ? jobSkills.map((jobSkill) => (
+      {jobSkills?.length > 0 ? jobSkills.map((jobSkill) => (
         <Typography
           className="job-skill"
           key={jobSkill.skill.id}

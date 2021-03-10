@@ -11,7 +11,7 @@ const JobList = () => {
 
   return (
     <div className="jobs-container">
-      {error ? null : (data?.jobs?.map((job) => (
+      {error ? null : (data?.jobs || [].map((job) => (
         <JobCard
           key={job?.id}
           companyName={job?.company?.name}
