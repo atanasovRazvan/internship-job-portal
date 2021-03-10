@@ -7,7 +7,6 @@ import {
 } from '@material-ui/core';
 import { ArrowDropDown } from '@material-ui/icons';
 import { Rating } from '@material-ui/lab';
-import NavBar from '../home-page/NavBar';
 import { GET_JOB } from '../sources';
 import './styles.css';
 import CompanyDetails from './CompanyDetails';
@@ -28,7 +27,6 @@ const JobDetails = () => {
 
   return (
     <div>
-      <NavBar />
       {error ? null : job && (
         <div className="details-container">
 

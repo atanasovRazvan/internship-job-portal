@@ -70,7 +70,7 @@ const LoginForm = ({ onSubmit, loginStatus }) => {
           aria-describedby="password-validation-info"
           onChange={(event) => setPassword(event.target.value)}
           endAdornment={(
-            <InputAdornment position="end">
+            <InputAdornment data-testid="show-password-button" position="end">
               <IconButton
                 aria-label="toggle password visibility"
                 onClick={changePasswordFieldType}

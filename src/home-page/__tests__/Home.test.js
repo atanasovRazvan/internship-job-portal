@@ -5,14 +5,14 @@ import { MockedProvider } from '@apollo/client/testing';
 import HomePage from '../Home';
 import { AuthContext } from '../../context/AuthProvider';
 
-describe('tests for home', async () => {
-  const value = {
-    username: 'razvan',
-    userRole: 3,
-    setUsername: jest.fn(),
-    setUserRole: jest.fn(),
-  };
+const value = {
+  username: 'razvan',
+  userRole: 3,
+  setUsername: jest.fn(),
+  setUserRole: jest.fn(),
+};
 
+describe('tests for home', async () => {
   beforeEach(async () => {
     render(
       <MockedProvider>
