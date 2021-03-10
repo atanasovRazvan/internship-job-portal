@@ -34,7 +34,8 @@ export const GET_JOBS = gql`
           skill{
             id,
             name,
-          }
+          },
+          rating,
         }
       }
     }
@@ -63,6 +64,7 @@ export const GET_JOB = gql`
         },
         jobSkills{
           skill{
+            id,
             name,
           },
           rating,

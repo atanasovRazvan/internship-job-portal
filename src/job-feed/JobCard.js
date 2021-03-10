@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import './styles.css';
 import { KeyboardArrowRight } from '@material-ui/icons';
 import { Redirect } from 'react-router-dom';
+import { Rating } from '@material-ui/lab';
 
 const JobCard = ({
   id, name, description, companyName, jobSkills,
@@ -33,11 +34,11 @@ const JobCard = ({
         {jobSkills.length > 0 ? jobSkills.map((jobSkill) => (
           <Typography
             className="job-skill"
-            key={jobSkill.skill.id}
-            variant="body2"
-            component="p"
+            key={jobSkill?.skill?.id}
+            variant="body1"
           >
-            {jobSkill.skill.name}
+            {jobSkill?.skill?.name}
+            <Rating name="read-only" size="small" value={jobSkill?.rating} readOnly />
           </Typography>
         ))
           : (

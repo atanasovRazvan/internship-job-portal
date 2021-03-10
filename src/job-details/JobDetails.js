@@ -6,6 +6,7 @@ import {
   Card, CardActions, CardContent, Typography,
 } from '@material-ui/core';
 import { ArrowDropDown } from '@material-ui/icons';
+import { Rating } from '@material-ui/lab';
 import NavBar from '../home-page/NavBar';
 import { GET_JOB } from '../sources';
 import './styles.css';
@@ -79,11 +80,12 @@ const JobDetails = () => {
               {job.jobSkills.length > 0 ? job.jobSkills.map((jobSkill) => (
                 <Typography
                   className="job-skill"
-                  key={jobSkill.skill?.id}
+                  key={jobSkill?.skill?.id}
                   variant="body2"
                   component="li"
                 >
-                  {jobSkill.skill?.name}
+                  {jobSkill?.skill?.name}
+                  <Rating name="read-only" size="small" value={jobSkill?.rating} readOnly />
                 </Typography>
               ))
                 : (
@@ -101,14 +103,14 @@ const JobDetails = () => {
                 Requirements
               </Typography>
               <hr />
-              {job.jobRequirements.length > 0 ? job.jobRequirements.map((jobRequirement) => (
+              {job.jobRequirements?.length > 0 ? job.jobRequirements.map((jobRequirement) => (
                 <Typography
                   className="job-skill"
-                  key={jobRequirement.name}
+                  key={jobRequirement?.name}
                   variant="body2"
                   component="li"
                 >
-                  {jobRequirement.name}
+                  {jobRequirement?.name}
                 </Typography>
               ))
                 : (
@@ -126,14 +128,14 @@ const JobDetails = () => {
                 Benefits
               </Typography>
               <hr />
-              {job.jobBenefits.length > 0 ? job.jobBenefits.map((jobBenefit) => (
+              {job.jobBenefits?.length > 0 ? job.jobBenefits.map((jobBenefit) => (
                 <Typography
                   className="job-skill"
-                  key={jobBenefit.name}
+                  key={jobBenefit?.name}
                   variant="body2"
                   component="li"
                 >
-                  {jobBenefit.name}
+                  {jobBenefit?.name}
                 </Typography>
               ))
                 : (
