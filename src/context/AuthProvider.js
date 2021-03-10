@@ -5,7 +5,7 @@ import useLocalStorage from '../utils/CustomHooks';
 export const AuthContext = React.createContext();
 
 const AuthProvider = ({ children }) => {
-  const [username, setUsername] = useLocalStorage('username');
+  const [username, setUsername] = useLocalStorage('username', null);
   const [userRole, setUserRole] = useState(0);
 
   const value = {
