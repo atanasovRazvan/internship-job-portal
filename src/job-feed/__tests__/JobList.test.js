@@ -31,6 +31,22 @@ const mocks = [{
             },
           ],
         },
+        {
+          id: 2,
+          name: 'Developer2',
+          description: 'Very good developer2',
+          company: {
+            name: 'CoolCompany',
+          },
+          jobSkills: [
+            {
+              skill: {
+                id: 1,
+                name: 'ReactJS2.0',
+              },
+            },
+          ],
+        },
       ],
     },
   },
@@ -45,10 +61,7 @@ describe('tests for JobList', async () => {
     );
   });
 
-  it('should see job details on the page', async () => {
-    expect(await screen.findByText('CoolCompany')).toBeInTheDocument();
-    expect(await screen.findByText('Developer')).toBeInTheDocument();
-    expect(await screen.findByText('Very good developer')).toBeInTheDocument();
-    expect(await screen.findByText('ReactJS')).toBeInTheDocument();
+  it('should see two job cards on the page', async () => {
+    expect(await screen.findAllByText('CoolCompany')).toHaveLength(2);
   });
 });

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import './styles.css';
 import { KeyboardArrowRight } from '@material-ui/icons';
 
-const Job = ({
+const JobCard = ({
   name, description, companyName, jobSkills,
 }) => (
   <Card className="job-card">
@@ -60,18 +60,18 @@ const Job = ({
   </Card>
 );
 
-Job.defaultProps = {
+JobCard.defaultProps = {
   name: '',
   description: '',
   companyName: '',
   jobSkills: [],
 };
 
-Job.propTypes = {
+JobCard.propTypes = {
   name: PropTypes.string,
   description: PropTypes.string,
   companyName: PropTypes.string,
   jobSkills: PropTypes.instanceOf(Array),
 };
 
-export default Job;
+export default JobCard;
