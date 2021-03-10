@@ -7,12 +7,11 @@ import './styles.css';
 import { KeyboardArrowRight } from '@material-ui/icons';
 import { Redirect } from 'react-router-dom';
 
-const Job = ({
+const JobCard = ({
   id, name, description, companyName, jobSkills,
 }) => {
   const [buttonClicked, setButtonClicked] = useState(false);
   const jobPath = `/job/${id}`;
-
   return (
     <Card className="job-card">
       <CardContent>
@@ -68,7 +67,7 @@ const Job = ({
   );
 };
 
-Job.defaultProps = {
+JobCard.defaultProps = {
   id: 0,
   name: '',
   description: '',
@@ -76,7 +75,7 @@ Job.defaultProps = {
   jobSkills: [],
 };
 
-Job.propTypes = {
+JobCard.propTypes = {
   id: PropTypes.number,
   name: PropTypes.string,
   description: PropTypes.string,
@@ -84,4 +83,4 @@ Job.propTypes = {
   jobSkills: PropTypes.instanceOf(Array),
 };
 
-export default Job;
+export default JobCard;

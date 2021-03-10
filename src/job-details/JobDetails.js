@@ -79,11 +79,11 @@ const JobDetails = () => {
               {job.jobSkills.length > 0 ? job.jobSkills.map((jobSkill) => (
                 <Typography
                   className="job-skill"
-                  key={jobSkill.skill.id}
+                  key={jobSkill.skill?.id}
                   variant="body2"
                   component="li"
                 >
-                  {jobSkill.skill.name}
+                  {jobSkill.skill?.name}
                 </Typography>
               ))
                 : (

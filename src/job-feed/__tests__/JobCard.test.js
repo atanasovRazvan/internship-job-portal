@@ -3,13 +3,13 @@ import {
   screen,
 } from '@testing-library/dom';
 import { render } from '@testing-library/react';
-import Job from '../Job';
+import JobCard from '../JobCard';
 import '@testing-library/jest-dom/extend-expect';
 
-describe('tests for the Job card', async () => {
+describe('tests for the JobCard card', async () => {
   beforeEach(async () => {
     render(
-      <Job
+      <JobCard
         name="Developer"
         description="Very good developer"
         companyName="CoolCompany"

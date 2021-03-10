@@ -13,16 +13,16 @@ const CompanyDetails = (companyInfo) => {
           {name}
         </Typography>
         <Typography color="textSecondary" variant="h6">
-          {contactInfo.city}
+          {contactInfo?.city}
           ,
           {' '}
-          {contactInfo.country.name}
+          {contactInfo?.country?.name}
         </Typography>
         <hr />
         <CardMedia
           component="img"
           className="company-logo"
-          image={contactInfo.avatarUrl}
+          image={contactInfo?.avatarUrl}
           title={name}
         />
         <br />
@@ -31,7 +31,7 @@ const CompanyDetails = (companyInfo) => {
         </Typography>
         <hr />
         <Typography color="textPrimary">
-          {contactInfo.about}
+          {contactInfo?.about}
         </Typography>
         <br />
         <Typography color="textSecondary" variant="h4">
@@ -41,17 +41,17 @@ const CompanyDetails = (companyInfo) => {
         <Typography color="textPrimary">
           E-mail:
           {' '}
-          {contactInfo.email}
+          {contactInfo?.email}
         </Typography>
         <Typography color="textPrimary">
           Phone number:
           {' '}
-          {contactInfo.phone}
+          {contactInfo?.phone}
         </Typography>
         <br />
         <Button
           color="primary"
-          href={contactInfo.website}
+          href={contactInfo?.website}
           target="_blank"
           variant="contained"
         >
