@@ -11,7 +11,7 @@ import { Rating } from '@material-ui/lab';
 const JobCard = ({
   id, name, description, companyName, jobSkills,
 }) => {
-  const [buttonClicked, setButtonClicked] = useState(false);
+  const [jobDetailsButtonClicked, setJobDetailsButtonClicked] = useState(false);
   const jobPath = `/job/${id}`;
   return (
     <Card className="job-card">
@@ -58,9 +58,9 @@ const JobCard = ({
           color="primary"
           variant="outlined"
           endIcon={<KeyboardArrowRight />}
-          onClick={() => setButtonClicked(true)}
+          onClick={() => setJobDetailsButtonClicked(true)}
         >
-          {buttonClicked ? <Redirect to={jobPath} /> : null }
+          {jobDetailsButtonClicked ? <Redirect to={jobPath} /> : null }
           Details
         </Button>
       </CardActions>

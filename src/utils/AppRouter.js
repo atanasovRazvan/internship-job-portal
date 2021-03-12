@@ -6,15 +6,18 @@ import NotFoundPage from '../not-found/NotFound';
 import PrivateRoute from './PrivateRoute';
 import HomePage from '../home-page/Home';
 import LandingPage from '../landing/LandingPage';
-import JobDetailsPage from '../job-details/JobDetailsPage';
+import JobDetails from '../job-details/JobDetails';
+import NavbarLayout from './NavbarLayout';
 
 const AppRouter = () => (
   <Router>
     <Switch>
       <Route exact path="/" component={LandingPage} />
       <Route path="/notfound" component={NotFoundPage} />
-      <PrivateRoute path="/home" component={HomePage} />
-      <PrivateRoute path="/job/:id" component={JobDetailsPage} />
+      <NavbarLayout>
+        <PrivateRoute path="/home" component={HomePage} />
+        <PrivateRoute path="/job/:id" component={JobDetails} />
+      </NavbarLayout>
       <Redirect to="/notfound" />
     </Switch>
   </Router>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import {
@@ -14,16 +14,10 @@ import CompanyDetails from './CompanyDetails';
 const JobDetails = () => {
   const { id } = useParams();
   const [companyCardVisibility, setCompanyCardVisibility] = useState(false);
-  const [job, setJob] = useState(null);
   const {
     data, error,
   } = useQuery(GET_JOB, { variables: { id: Number(id) } });
-
-  useEffect(() => {
-    if (data) {
-      setJob(data.job);
-    }
-  }, [data]);
+  const job = data?.job;
 
   return (
     <div>
