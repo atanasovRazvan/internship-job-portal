@@ -10,6 +10,7 @@ import NavbarLayout from './NavbarLayout';
 import AuthenticatedRoute from './AuthenticatedRoute';
 import SwitchRoute from './SwitchRoute';
 import JobListPage from '../job-feed/JobListPage';
+import UsersTable from '../admin-page/UsersTable';
 
 const AppRouter = () => (
   <Router>
@@ -19,7 +20,7 @@ const AppRouter = () => (
       <NavbarLayout>
         <PrivateRoute exact path="/jobs" component={JobListPage} roleRequired="user" />
         <PrivateRoute exact path="/job/:id" component={JobDetails} roleRequired="user" />
-        <PrivateRoute exact path="/users" component={NotFoundPage} roleRequired="sys_admin" />
+        <PrivateRoute exact path="/users" component={UsersTable} roleRequired="sys_admin" />
       </NavbarLayout>
       <Route path="/notfound" component={NotFoundPage} />
       <Redirect to="/notfound" />

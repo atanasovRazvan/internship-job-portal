@@ -5,7 +5,13 @@ export const GET_USERS = gql`
     users{
       id,
       username,
-      password
+      password,
+      userRole{
+        name,
+      },
+      contactInfo{
+        email,
+      }
     }
   } 
 `;

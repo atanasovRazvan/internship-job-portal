@@ -3,7 +3,6 @@ import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import LandingPage from '../landing/LandingPage';
 import { AuthContext } from '../context/AuthProvider';
-import NotFoundPage from '../not-found/NotFound';
 
 const PrivateRoute = ({
   path, exact, component, roleRequired,
@@ -13,7 +12,7 @@ const PrivateRoute = ({
   return (
     (userRole === roleRequired)
       ? (<Route path={path} exact={exact} component={component} />)
-      : (<NotFoundPage />)
+      : null
   );
 };
 
