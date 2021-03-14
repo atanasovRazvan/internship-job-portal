@@ -1,34 +1,31 @@
 import React, { useContext } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import LandingPage from '../landing/LandingPage';
 import { AuthContext } from '../context/AuthProvider';
-import NotFoundPage from '../not-found/NotFound';
 
-const PrivateRoute = ({
-  path, exact, component, roleRequired,
+const AuthenticatedRoute = ({
+  path, exact, component,
 }) => {
   const { userRole } = useContext(AuthContext);
 
   return (
-    (userRole === roleRequired)
+    userRole === null
       ? (<Route path={path} exact={exact} component={component} />)
-      : (<NotFoundPage />)
+      : (<Redirect to="/home" />)
   );
 };
 
-PrivateRoute.defaultProps = {
+AuthenticatedRoute.defaultProps = {
   component: LandingPage,
   path: '/',
   exact: true,
-  roleRequired: null,
 };
 
-PrivateRoute.propTypes = {
+AuthenticatedRoute.propTypes = {
   component: PropTypes.func,
   path: PropTypes.string,
   exact: PropTypes.bool,
-  roleRequired: PropTypes.string,
 };
 
-export default PrivateRoute;
+export default AuthenticatedRoute;

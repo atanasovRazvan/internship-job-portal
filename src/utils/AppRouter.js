@@ -4,20 +4,24 @@ import {
 import React from 'react';
 import NotFoundPage from '../not-found/NotFound';
 import PrivateRoute from './PrivateRoute';
-import HomePage from '../home-page/Home';
 import LandingPage from '../landing/LandingPage';
 import JobDetails from '../job-details/JobDetails';
 import NavbarLayout from './NavbarLayout';
+import AuthenticatedRoute from './AuthenticatedRoute';
+import SwitchRoute from './SwitchRoute';
+import JobListPage from '../job-feed/JobListPage';
 
 const AppRouter = () => (
   <Router>
     <Switch>
-      <Route exact path="/" component={LandingPage} />
-      <Route path="/notfound" component={NotFoundPage} />
+      <AuthenticatedRoute exact path="/" component={LandingPage} />
+      <Route path="/home" component={SwitchRoute} />
       <NavbarLayout>
-        <PrivateRoute path="/home" component={HomePage} />
-        <PrivateRoute path="/job/:id" component={JobDetails} />
+        <PrivateRoute exact path="/jobs" component={JobListPage} roleRequired="user" />
+        <PrivateRoute exact path="/job/:id" component={JobDetails} roleRequired="user" />
+        <PrivateRoute exact path="/users" component={NotFoundPage} roleRequired="sys_admin" />
       </NavbarLayout>
+      <Route path="/notfound" component={NotFoundPage} />
       <Redirect to="/notfound" />
     </Switch>
   </Router>

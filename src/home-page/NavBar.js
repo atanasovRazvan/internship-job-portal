@@ -7,16 +7,16 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { AuthContext } from '../context/AuthProvider';
 
 const NavBar = () => {
-  const { username, setUsername, setUserRole } = useContext(AuthContext);
+  const { username, setUserId, setUserRole } = useContext(AuthContext);
 
   const handleLogout = () => {
-    setUsername(null);
+    setUserId(null);
     setUserRole(0);
   };
 
   return (
     <AppBar position="fixed">
-      <Toolbar className="navbar">
+      <Toolbar>
         <IconButton edge="start" color="inherit" aria-label="menu">
           <MenuIcon />
         </IconButton>

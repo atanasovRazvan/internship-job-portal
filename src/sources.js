@@ -3,10 +3,22 @@ import { gql } from '@apollo/client';
 export const GET_USERS = gql`
   query Login{
     users{
-      username
+      id,
+      username,
       password
     }
   } 
+`;
+
+export const GET_USER = gql`
+  query GetUser($id: Int!){
+    user(id: $id){
+      username,
+       userRole{
+         name,
+       },
+     }
+   }
 `;
 
 export const CREATE_USER = gql`

@@ -5,7 +5,9 @@ import NavBar from '../home-page/NavBar';
 const NavbarLayout = ({ children }) => (
   <>
     <NavBar />
-    {children}
+    <div style={{ marginTop: '5rem' }}>
+      {children}
+    </div>
   </>
 );
 

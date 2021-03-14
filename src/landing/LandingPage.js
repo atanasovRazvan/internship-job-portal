@@ -18,7 +18,7 @@ const LandingPage = () => {
   const [loginResult, setLoginResult] = useState(null);
   const [registerResult, setRegisterResult] = useState(null);
   const {
-    setUsername, setUserRole,
+    setUserId,
   } = useContext(AuthContext);
 
   const [getUsers, {
@@ -31,9 +31,7 @@ const LandingPage = () => {
                                                         && user.password === passwordState);
 
       if (foundUser) {
-        localStorage.setItem('username', usernameState);
-        setUsername(usernameState);
-        setUserRole(foundUser.userRole);
+        setUserId(foundUser.id);
         setLoginResult(loginStates.success);
       } else {
         setLoginResult(loginStates.credentialsError);
