@@ -1,8 +1,8 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_JOBS } from '../sources';
-import JobCard from './JobCard';
 import './styles.css';
+import JobCard from './JobCard';
 
 const JobList = () => {
   const {
@@ -14,6 +14,7 @@ const JobList = () => {
       {error ? null : ((data?.jobs || []).map((job) => (
         <JobCard
           key={job?.id}
+          id={job?.id}
           companyName={job?.company?.name}
           description={job?.description}
           name={job?.name}

@@ -1,6 +1,7 @@
 import React from 'react';
 import {
-  screen,
+  fireEvent,
+  screen, waitFor,
 } from '@testing-library/dom';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -38,5 +39,11 @@ describe('tests for login form', async () => {
     expect(passwordInput.getAttribute('aria-invalid')).toBe('false');
 
     expect(loginButton.parentElement.getAttribute('disabled')).toBeNull();
+  });
+
+  it('should display the password if the show password button is clicked', async () => {
+    expect(passwordInput).toHaveAttribute('type', 'password');
+    fireEvent.click(screen.getByTestId('show-password-button').firstChild);
+    await waitFor(() => expect(passwordInput).toHaveAttribute('type', 'text'));
   });
 });

@@ -31,6 +31,7 @@ const LandingPage = () => {
                                                         && user.password === passwordState);
 
       if (foundUser) {
+        localStorage.setItem('username', usernameState);
         setUsername(usernameState);
         setUserRole(foundUser.userRole);
         setLoginResult(loginStates.success);

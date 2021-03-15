@@ -34,8 +34,47 @@ export const GET_JOBS = gql`
           skill{
             id,
             name,
-          }
+          },
+          rating,
         }
+      }
+    }
+`;
+
+export const GET_JOB = gql`
+    query GetJob($id: Int!){
+      job(id: $id){
+        id,
+        name,
+        description,
+        isAvailable,
+        company{
+          name,
+          contactInfo{
+            email,
+            phone,
+            city,
+            country{
+              name
+            },
+            website,
+            avatarUrl,
+            about,
+          },
+        },
+        jobSkills{
+          skill{
+            id,
+            name,
+          },
+          rating,
+        },
+        jobRequirements{
+          name,
+        },
+        jobBenefits{
+          name,
+        },
       }
     }
 `;
