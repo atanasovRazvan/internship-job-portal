@@ -3,27 +3,39 @@ import {
 } from 'react-router-dom';
 import React from 'react';
 import NotFoundPage from '../not-found/NotFound';
-import PrivateRoute from './PrivateRoute';
 import LandingPage from '../landing/LandingPage';
-import JobDetails from '../job-details/JobDetails';
-import NavbarLayout from './NavbarLayout';
 import AuthenticatedRoute from './AuthenticatedRoute';
-import SwitchRoute from './SwitchRoute';
 import JobListPage from '../job-feed/JobListPage';
+import SwitchRoute from './SwitchRoute';
+import NavbarLayout from './NavbarLayout';
+import isRouteAvailable from './RouteAvailabilityHelper';
+import JobDetails from '../job-details/JobDetails';
 import UsersTable from '../admin-page/UsersTable';
+
+const routes = [
+  { path: '/jobs', component: JobListPage, isAvailable: () => isRouteAvailable('/jobs') },
+  { path: '/job/:id', component: JobDetails, isAvailable: () => isRouteAvailable('/job/:id') },
+  { path: '/users', component: UsersTable, isAvailable: () => isRouteAvailable('/users') },
+  { path: '/yourjobs', component: JobListPage, isAvailable: () => isRouteAvailable('/yourjobs') },
+];
 
 const AppRouter = () => (
   <Router>
+    <NavbarLayout />
     <Switch>
       <AuthenticatedRoute exact path="/" component={LandingPage} />
       <Route path="/home" component={SwitchRoute} />
-      <NavbarLayout>
-        <PrivateRoute exact path="/jobs" component={JobListPage} roleRequired="user" />
-        <PrivateRoute exact path="/job/:id" component={JobDetails} roleRequired="user" />
-        <PrivateRoute exact path="/users" component={UsersTable} roleRequired="sys_admin" />
-      </NavbarLayout>
+      {routes.map((route) => (route.isAvailable()
+        ? (
+          <Route
+            key={route.path}
+            path={route.path}
+            component={route.component}
+          />
+        )
+        : null))}
       <Route path="/notfound" component={NotFoundPage} />
-      <Redirect to="/notfound" />
+      <Redirect from="*" to="/notfound" />
     </Switch>
   </Router>
 );

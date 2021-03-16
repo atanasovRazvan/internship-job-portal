@@ -18,7 +18,7 @@ const LandingPage = () => {
   const [loginResult, setLoginResult] = useState(null);
   const [registerResult, setRegisterResult] = useState(null);
   const {
-    setUserId,
+    setUserId, setUsername, setUserRole,
   } = useContext(AuthContext);
 
   const [getUsers, {
@@ -32,6 +32,8 @@ const LandingPage = () => {
 
       if (foundUser) {
         setUserId(foundUser.id);
+        setUsername(foundUser.username);
+        setUserRole(foundUser.userRole.name);
         setLoginResult(loginStates.success);
       } else {
         setLoginResult(loginStates.credentialsError);

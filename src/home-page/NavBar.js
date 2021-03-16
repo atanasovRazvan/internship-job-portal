@@ -7,11 +7,14 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { AuthContext } from '../context/AuthProvider';
 
 const NavBar = () => {
-  const { username, setUserId, setUserRole } = useContext(AuthContext);
+  const {
+    username, setUserId, setUserRole, setUsername,
+  } = useContext(AuthContext);
 
   const handleLogout = () => {
     setUserId(null);
-    setUserRole(0);
+    setUserRole(null);
+    setUsername(null);
   };
 
   return (

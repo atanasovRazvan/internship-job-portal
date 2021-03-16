@@ -1,23 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { useQuery } from '@apollo/client';
 import useLocalStorage from '../utils/CustomHooks';
-import { GET_USER } from '../sources';
 
 export const AuthContext = React.createContext();
 
 const AuthProvider = ({ children }) => {
   const [userId, setUserId] = useLocalStorage('userId', null);
-  const [username, setUsername] = useState(null);
-  const [userRole, setUserRole] = useState(null);
-  const { data, error } = useQuery(GET_USER, { variables: { id: userId } });
-
-  useEffect(() => {
-    if (!error && data) {
-      setUsername(data.user?.username);
-      setUserRole(data.user?.userRole.name);
-    }
-  }, [data]);
+  const [username, setUsername] = useLocalStorage('username', null);
+  const [userRole, setUserRole] = useLocalStorage('userRole', null);
 
   const value = {
     userId,

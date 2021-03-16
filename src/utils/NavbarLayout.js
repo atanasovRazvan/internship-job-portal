@@ -1,22 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import NavBar from '../home-page/NavBar';
+import { AuthContext } from '../context/AuthProvider';
 
-const NavbarLayout = ({ children }) => (
-  <>
-    <NavBar />
-    <div style={{ marginTop: '5rem' }}>
-      {children}
-    </div>
-  </>
-);
+const NavbarLayout = () => {
+  const { userRole } = useContext(AuthContext);
 
-NavbarLayout.defaultProps = {
-  children: null,
-};
+  if (userRole === null) return null;
 
-NavbarLayout.propTypes = {
-  children: PropTypes.node,
+  return (
+    <>
+      <NavBar />
+      <div style={{ marginTop: '5rem' }} />
+    </>
+  );
 };
 
 export default NavbarLayout;
